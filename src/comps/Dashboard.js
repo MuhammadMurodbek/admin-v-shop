@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import clsx from 'clsx';
 import {BrowserRouter as 
   Route,
@@ -8,7 +8,7 @@ import {BrowserRouter as
 } from 'react-router-dom'
 import Books from './Books'
 import Products from './Products'
-import Messeges from './Messeges'
+import Messeges from './Categories'
 import Users from './Users'
 import SoldPro from './SoldPro'
 import Exit from './Exit'
@@ -113,12 +113,9 @@ export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [isAuth, setIsAuth] = useState(true)
+  const [isAuth] = useState(true)
 
   let location = useLocation()
-  useEffect(() => {
-    console.log(location)
-  },[])
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -134,11 +131,12 @@ export default function MiniDrawer() {
       <AppBar
         position="fixed"
         className={
-          location.pathname==='/' ? 
-            classes.appBarAuth :
-            clsx(classes.appBar, {
-            [classes.appBarShift]: open,
-        })}
+          location.pathname === "/"
+            ? classes.appBarAuth
+            : clsx(classes.appBar, {
+                [classes.appBarShift]: open,
+              })
+        }
       >
         <Toolbar>
           <IconButton
@@ -153,42 +151,43 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <div className="app-bar-items">
-              <div className="title">
-                  <h2>Admin</h2>
-              </div>
-              <div className="items">
-                <NavLink to="/Xabarlar">
-                  <IconButton style={{color:'#fff'}}>
-                      <Badge badgeContent={4} color="secondary">
-                          <MessageIcon/>
-                      </Badge>
-                  </IconButton>
-                </NavLink>
-                <NavLink to="/Buyurtmalar">
-                  <IconButton style={{color:'#fff'}}>
-                      <Badge badgeContent={4} color="secondary">
-                          <NotificationsActiveIcon />
-                      </Badge>
-                  </IconButton>
-                </NavLink>
-                <NavLink to="/personal">
-                  <IconButton style={{color:'#fff'}}>
-                      <AccountCircleIcon />
-                  </IconButton>
-                </NavLink>
-              </div>
+            <div className="title">
+              <h2>Admin</h2>
+            </div>
+            <div className="items">
+              <NavLink to="/Kategoriyalar">
+                <IconButton style={{ color: "#fff" }}>
+                  <Badge badgeContent={4} color="secondary">
+                    <MessageIcon />
+                  </Badge>
+                </IconButton>
+              </NavLink>
+              <NavLink to="/Buyurtmalar">
+                <IconButton style={{ color: "#fff" }}>
+                  <Badge badgeContent={4} color="secondary">
+                    <NotificationsActiveIcon />
+                  </Badge>
+                </IconButton>
+              </NavLink>
+              <NavLink to="/personal">
+                <IconButton style={{ color: "#fff" }}>
+                  <AccountCircleIcon />
+                </IconButton>
+              </NavLink>
+            </div>
           </div>
         </Toolbar>
       </AppBar>
       <Drawer
         variant="permanent"
         className={
-          location.pathname === '/' ? 
-            classes.drawerAuth :
-            clsx(classes.drawer, {
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-        })}
+          location.pathname === "/"
+            ? classes.drawerAuth
+            : clsx(classes.drawer, {
+                [classes.drawerOpen]: open,
+                [classes.drawerClose]: !open,
+              })
+        }
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,
@@ -198,36 +197,47 @@ export default function MiniDrawer() {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
         <List>
-          {['Buyurtmalar', 'Foydalanuvchilar', 'Tovarlar', 'Xabarlar'].map((text, index) => (
-            <NavLink to={ `${text}`} key={index} >
-              {/* index===0 ? `/` :  */}
-                <ListItem button >
-                    <ListItemIcon>
-                      {
-                        index === 0 ? <NotificationsActiveIcon /> : 
-                        (index === 1 ? <PeopleIcon/>:
-                          (index === 2 ? <ShoppingCartIcon/>:
-                            (index === 3 ? <ChatIcon/>:null)))
-                      }
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
+          {["Buyurtmalar", "Foydalanuvchilar", "Tovarlar", "Kategoriyalar"].map(
+            (text, index) => (
+              <NavLink to={`${text}`} key={index}>
+                {/* index===0 ? `/` :  */}
+                <ListItem button>
+                  <ListItemIcon>
+                    {index === 0 ? (
+                      <NotificationsActiveIcon />
+                    ) : index === 1 ? (
+                      <PeopleIcon />
+                    ) : index === 2 ? (
+                      <ShoppingCartIcon />
+                    ) : index === 3 ? (
+                      <ChatIcon />
+                    ) : null}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
                 </ListItem>
-            </NavLink>
-          ))}
+              </NavLink>
+            )
+          )}
         </List>
         <Divider />
         <List>
-          {['Sotilgan tovarlar', 'Auth'].map((text, index) => (
-            <NavLink to={ index === 0 ? `${text}` : '/'} key={index} >
-                <ListItem button >
-                    <ListItemIcon>{index % 2 === 0 ? <LocalOfferIcon /> : <ExitToAppIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                </ListItem>
+          {["Sotilgan tovarlar", "Auth"].map((text, index) => (
+            <NavLink to={index === 0 ? `${text}` : "/"} key={index}>
+              <ListItem button>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <LocalOfferIcon /> : <ExitToAppIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
             </NavLink>
           ))}
         </List>
@@ -235,13 +245,39 @@ export default function MiniDrawer() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Switch>
-            <Route exact path='/'><Exit/></Route>
-            <ProtectedRoute path='/Buyurtmalar'  component={Books} isAuth={isAuth}/>
-            <ProtectedRoute path='/Foydalanuvchilar'  component={Users} isAuth={isAuth}/>
-            <ProtectedRoute path='/Tovarlar'  component={Products} isAuth={isAuth}/>
-            <ProtectedRoute path='/Xabarlar'  component={Messeges} isAuth={isAuth}/>
-            <ProtectedRoute path='/Sotilgan tovarlar'  component={SoldPro} isAuth={isAuth}/>
-            <ProtectedRoute path='/personal'  component={AdminPage} isAuth={isAuth}/>
+          <Route exact path="/">
+            <Exit />
+          </Route>
+          <ProtectedRoute
+            path="/Buyurtmalar"
+            component={Books}
+            isAuth={isAuth}
+          />
+          <ProtectedRoute
+            path="/Foydalanuvchilar"
+            component={Users}
+            isAuth={isAuth}
+          />
+          <ProtectedRoute
+            path="/Tovarlar"
+            component={Products}
+            isAuth={isAuth}
+          />
+          <ProtectedRoute
+            path="/Kategoriyalar"
+            component={Messeges}
+            isAuth={isAuth}
+          />
+          <ProtectedRoute
+            path="/Sotilgan tovarlar"
+            component={SoldPro}
+            isAuth={isAuth}
+          />
+          <ProtectedRoute
+            path="/personal"
+            component={AdminPage}
+            isAuth={isAuth}
+          />
         </Switch>
       </main>
     </div>
