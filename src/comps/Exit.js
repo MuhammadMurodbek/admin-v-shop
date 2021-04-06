@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Button from "@material-ui/core/Button";
-import { Link, useHistory } from "react-router-dom";
+// import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
 import { StoreG } from "../Store/Store";
 
 const schema = yup.object().shape({
