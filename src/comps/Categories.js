@@ -31,7 +31,7 @@ import UploadImage from "./UploadImg";
 import IconButton from "@material-ui/core/IconButton";
 import { withRouter } from "react-router-dom";
 
-const Products = () => {
+const Categories = () => {
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -59,13 +59,9 @@ const Products = () => {
     )),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
   };
-  // const { useState } = React;
 
   const [columns] = useState([
-    { title: "Mahsulot", field: "product", width: "30%" },
-    { title: "Malumot", field: "inform", width: "20%" },
-    { title: "Narx", field: "cost", type: "numeric", width: "10%" },
-    { title: "Kategoriya", field: "category", width: "30%" },
+    { title: "Kategoriya nomi", field: "category", width: "30%" },
     {
       title: "Rasm",
       field: "imageUrl",
@@ -86,31 +82,19 @@ const Products = () => {
   ]);
   const [data, setData] = useState([
     {
-      product: "Mehmet",
-      inform: "Baran",
-      cost: 1987,
-      category: 998993455214,
+      category: "Kiyimlar",
       imageUrl: "https://picsum.photos/200/100",
     },
     {
-      product: "Mehmet",
-      inform: "Baran",
-      cost: 1987,
-      category: 998993455214,
+      category: "Kiyimlar",
       imageUrl: "https://picsum.photos/200/100",
     },
     {
-      product: "Mehmet",
-      inform: "Baran",
-      cost: 1987,
-      category: 998993455214,
+      category: "Kiyimlar",
       imageUrl: "https://picsum.photos/200/100",
     },
     {
-      product: "Mehmet",
-      inform: "Baran",
-      cost: 1987,
-      category: 998993455214,
+      category: "Kiyimlar",
       imageUrl: "https://picsum.photos/200/100",
     },
   ]);
@@ -136,7 +120,7 @@ const Products = () => {
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Mahsulot qo'shish" />
+          <ListItemText primary="Kategoriya qo'shish" />
           {openAdd ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={openAdd} timeout="auto" unmountOnExit>
@@ -145,16 +129,13 @@ const Products = () => {
               <div className="admin-product-edit">
                 <Card className="admin-product-edit-add">
                   <div>
-                    <TextField className="textInput" label="Product" />
-                    <TextField className="textInput" label="Ma'lumot" />
-                    <TextField className="textInput" label="Narx" />
-                    <TextField className="textInput" label="Kategoriya" />
+                    <TextField className="textInput" label="Kategoriya nomi" />
                     <Button
                       className="btn-admin-add"
                       variant="contained"
                       color="primary"
                     >
-                      Add
+                      Qo'shish
                     </Button>
                   </div>
                   <div>
@@ -173,7 +154,7 @@ const Products = () => {
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Mahsulotni yangilash" />
+          <ListItemText primary="Kategoriyani yangilash" />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
@@ -182,10 +163,7 @@ const Products = () => {
               <div className="admin-product-edit">
                 <Card className="admin-product-edit-add">
                   <div>
-                    <TextField className="textInput" label="Product" />
-                    <TextField className="textInput" label="Ma'lumot" />
-                    <TextField className="textInput" label="Narx" />
-                    <TextField className="textInput" label="Kategoriya" />
+                    <TextField className="textInput" label="Kategoriya nomi" />
                     <Button
                       className="btn-admin-add"
                       variant="contained"
@@ -249,4 +227,4 @@ const Products = () => {
   );
 };
 
-export default withRouter(Products);
+export default withRouter(Categories);
