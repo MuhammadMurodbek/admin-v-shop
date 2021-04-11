@@ -145,9 +145,13 @@ a{
     background-color:transparent !important;
 }
 .container-login{
+    @include d-ss;
     text-align:center;
-    h2{
-        margin-top: 100px;
+    &-card{
+        width: 500px;
+        height:auto;
+        padding: 30px;
+        margin-top: 50px;
     }
     .login{
         @include d-ss;
@@ -156,7 +160,7 @@ a{
         padding: 10px;
 
         form{
-            width: 40%;
+            width: 100%;
             min-width: 200px;
             
             input{

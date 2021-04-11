@@ -78,6 +78,7 @@ const Users = () => {
                 columns={columns}
                 data={data}
                 icons={tableIcons}
+                options={{exportButton: true}}
                 responsive={true}
                 editable={{
                 onRowAdd: newData =>
@@ -106,7 +107,6 @@ const Users = () => {
                         const index = oldData.tableData.id;
                         dataDelete.splice(index, 1);
                         setData([...dataDelete]);
-                        
                         resolve()
                     }, 1000)
                     }),

@@ -189,10 +189,22 @@ a {
 }
 
 .container-login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
 }
-.container-login h2 {
-  margin-top: 100px;
+.container-login-card {
+  width: 500px;
+  height: auto;
+  padding: 30px;
+  margin-top: 50px;
 }
 .container-login .login {
   display: -webkit-box;
@@ -209,7 +221,7 @@ a {
   padding: 10px;
 }
 .container-login .login form {
-  width: 40%;
+  width: 100%;
   min-width: 200px;
 }
 .container-login .login form input {

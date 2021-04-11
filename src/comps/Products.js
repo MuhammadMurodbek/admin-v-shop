@@ -192,6 +192,7 @@ const Products = () => {
                 columns={columns}
                 data={data}
                 icons={tableIcons}
+                options={{exportButton: true}}
                 responsive={true}
                 editable={{
                 // onRowAdd: newData =>

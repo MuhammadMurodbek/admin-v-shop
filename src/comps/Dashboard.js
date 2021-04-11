@@ -157,7 +157,7 @@ export default function MiniDrawer() {
                   <h2>Admin</h2>
               </div>
               <div className="items">
-                <NavLink to="/Xabarlar">
+                <NavLink to="/Tugagan-tovarlar">
                   <IconButton style={{color:'#fff'}}>
                       <Badge badgeContent={4} color="secondary">
                           <MessageIcon/>
@@ -203,7 +203,7 @@ export default function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          {['Buyurtmalar', 'Foydalanuvchilar', 'Tovarlar', 'Xabarlar'].map((text, index) => (
+          {['Buyurtmalar', 'Foydalanuvchilar', 'Tovarlar', 'Tugagan-tovarlar'].map((text, index) => (
             <NavLink to={ `${text}`} key={index} >
               {/* index===0 ? `/` :  */}
                 <ListItem button >
@@ -222,7 +222,7 @@ export default function MiniDrawer() {
         </List>
         <Divider />
         <List>
-          {['Sotilgan tovarlar', 'Auth'].map((text, index) => (
+          {['Sotilgan-tovarlar', 'Auth'].map((text, index) => (
             <NavLink to={ index === 0 ? `${text}` : '/'} key={index} >
                 <ListItem button >
                     <ListItemIcon>{index % 2 === 0 ? <LocalOfferIcon /> : <ExitToAppIcon />}</ListItemIcon>
@@ -239,8 +239,8 @@ export default function MiniDrawer() {
             <ProtectedRoute path='/Buyurtmalar'  component={Books} isAuth={isAuth}/>
             <ProtectedRoute path='/Foydalanuvchilar'  component={Users} isAuth={isAuth}/>
             <ProtectedRoute path='/Tovarlar'  component={Products} isAuth={isAuth}/>
-            <ProtectedRoute path='/Xabarlar'  component={Messeges} isAuth={isAuth}/>
-            <ProtectedRoute path='/Sotilgan tovarlar'  component={SoldPro} isAuth={isAuth}/>
+            <ProtectedRoute path='/Tugagan-tovarlar'  component={Messeges} isAuth={isAuth}/>
+            <ProtectedRoute path='/Sotilgan-tovarlar'  component={SoldPro} isAuth={isAuth}/>
             <ProtectedRoute path='/personal'  component={AdminPage} isAuth={isAuth}/>
         </Switch>
       </main>
