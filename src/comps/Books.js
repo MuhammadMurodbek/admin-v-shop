@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import {Editable} from './Table';
 import Charts from './Charts'
 import ChartLine from './ChartLine'
+import FixedTags from './Dropdown'
 import {withRouter} from 'react-router-dom'
 
 const Books = () => {
@@ -64,6 +65,12 @@ const Books = () => {
                         <Charts/>
                     </Card>
                 </div>
+            </div>
+            <div style={{display:"flex", alignItems: "center", justifyContent: "space-around"}}>
+                <Card className="card" style={{width:"48%", padding:"20px", textAlign: "center"}}>
+                    <h2>Buyurtmalarni kategoriya bo'yicha tartiblash</h2>
+                </Card>
+                <FixedTags/>
             </div>
             <div>
                 <Editable/>

@@ -1,9 +1,11 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { forwardRef } from 'react';
 import MaterialTable from 'material-table'
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import Button from '@material-ui/core/Button';
 import Check from '@material-ui/icons/Check';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import Clear from '@material-ui/icons/Clear';
@@ -16,8 +18,68 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn'
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+
+////--------------------------------
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50; 
+  const left = 50; 
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+////--------------------------------
+
 
 export function Editable(){
+  const [rowData, setRowData] = useState({})
+  ////////////----------------------------
+  const classes = useStyles();
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = React.useState(getModalStyle);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = (data) => {
+    setOpen(true);
+    setRowData(data);
+    console.log(data);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const body = (
+    <div style={modalStyle} className={classes.paper}>
+        <h3>{rowData.name}</h3>
+        <h3>{rowData.phone}</h3>
+        <h3>{rowData.data}</h3>
+        <h3>{rowData.more}</h3>
+        <h3>{rowData.delete}</h3>
+    </div>
+  );
+
+  ///-------------------------------------
+
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -37,30 +99,57 @@ export function Editable(){
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
-
+  const handleClick = (data) => {
+    console.log(data)
+  }
   const data = [
-    {name:'Murodbek', product:'Shampun', data:'12/12/12', messege:'Tezda junatilsin', delete:'delete'},
-    {name:'Murodbek', product:'Shampun', data:'12/12/12', messege:'Tezda junatilsin', delete:'delete'},
-    {name:'Azizbek', product:'Shampun', data:'12/12/12', messege:'Tezda junatilsin', delete:'delete'},
-    {name:'Murodbek', product:'Shampun', data:'12/12/12', messege:'Tezda junatilsin', delete:'delete'},
-    {name:'Murodbek', product:'Shampun', data:'12/12/12', messege:'Tezda junatilsin', delete:'delete'},
-    {name:'Murodbek', product:'Shampun', data:'12/12/12', messege:'Tezda junatilsin', delete:'delete'},
+    {name:'Murodbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
+    {name:'Murodbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
+    {name:'Azizbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
+    {name:'Murodbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
+    {name:'Murodbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
+    {name:'Murodbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
   ]
   const column = [
     {title:'Haridor', field:'name'},
-    {title:'Tovarlar', field:'product'},
-    {title:'Sana', field:'data'},
-    {title:'Xabarlar', field:'messege'},
-    {title:"O'chirish", field:'delete'},
+    {title:'Tel raqam', field:'phone'},
+    {title:'Sana/Vaqt', field:'data'},
+    {
+      title: "Batafsil...",
+      field: "more",
+      editable: false,
+      render: (rowData) =>
+          rowData && (
+          <Button color="primary"  onClick={()=>handleOpen(rowData)} >Batafsil...</Button>
+      )
+    },
+    {
+      title: "Bajarildi",
+      field: "done",
+      editable: false,
+      render: (rowData) =>
+          rowData && (
+          <Button color="primary" variant="contained" onClick={()=>handleClick(rowData)}><CheckCircleOutlineIcon/>Bajarildi</Button>
+      )
+    }
   ]
   return(
     <div className="table-data">
       <MaterialTable
+        title="Buyurtmalar"
         icons={tableIcons}
         data={data}
         columns={column}
         responsive={true}
       />
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        {body}
+      </Modal>
     </div>
   )
 }

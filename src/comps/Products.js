@@ -29,6 +29,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn'
 import UploadImage from './UploadImg';
 import IconButton from "@material-ui/core/IconButton";
+import FixedTags from './Dropdown'
 import {withRouter} from 'react-router-dom'
 
 const Products = () => {
@@ -99,7 +100,7 @@ const Products = () => {
     }
 
     const productInfo={
-        name:'Product'
+        name:'Mahsulotlar'
     }
 
     return (
@@ -179,6 +180,12 @@ const Products = () => {
                     </ListItem>
                     </List>
                 </Collapse>
+            </div>
+            <div style={{display:"flex", alignItems: "center", justifyContent: "space-around"}}>
+                <Card className="card" style={{width:"48%", padding:"20px", textAlign: "center"}}>
+                    <h2>Kategoriya bo'yicha tartiblash</h2>
+                </Card>
+                <FixedTags/>
             </div>
             <MaterialTable
                 title={productInfo.name}
