@@ -1,8 +1,7 @@
 import React from 'react'
 import Card from '@material-ui/core/Card';
-import {Editable} from './Table';
+import {Editable} from '../Table';
 import Charts from './Charts'
-import ChartLine from './ChartLine'
 import FixedTags from './Dropdown'
 import {withRouter} from 'react-router-dom'
 
@@ -58,9 +57,6 @@ const Books = () => {
 
             <div className="chart-part">
                 <div className="chart-part-wrapper">
-                    <Card className="card-chart">
-                        <ChartLine/>
-                    </Card>
                     <Card className="card-chart">
                         <Charts/>
                     </Card>

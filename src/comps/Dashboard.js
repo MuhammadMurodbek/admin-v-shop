@@ -6,36 +6,37 @@ import {BrowserRouter as
   Switch,
   useLocation
 } from 'react-router-dom'
-import Books from './Books'
+import Books from './Books/Books'
 import Products from './Products'
 import Messeges from './Messeges'
 import Users from './Users'
 import SoldPro from './SoldPro'
 import Exit from './Exit'
-import ProtectedRoute from './ProtectedRoute'
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Category from './Category'
+import List from '@material-ui/core/List';
+import Badge from '@material-ui/core/Badge';
+import ProtectedRoute from './ProtectedRoute';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Toolbar from '@material-ui/core/Toolbar';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import PeopleIcon from '@material-ui/icons/People';
+import IconButton from '@material-ui/core/IconButton';
+import CategoryIcon from '@material-ui/icons/Category';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import ChatIcon from '@material-ui/icons/Chat';
-import PeopleIcon from '@material-ui/icons/People';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-import MessageIcon from '@material-ui/icons/Message';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import Badge from '@material-ui/core/Badge';
 import AdminPage from './AdminPage';
 
 
@@ -157,18 +158,16 @@ export default function MiniDrawer() {
                   <h2>Admin</h2>
               </div>
               <div className="items">
-                <NavLink to="/Tugagan-tovarlar">
-                  <IconButton style={{color:'#fff'}}>
-                      <Badge badgeContent={4} color="secondary">
-                          <MessageIcon/>
-                      </Badge>
-                  </IconButton>
-                </NavLink>
                 <NavLink to="/Buyurtmalar">
                   <IconButton style={{color:'#fff'}}>
                       <Badge badgeContent={4} color="secondary">
                           <NotificationsActiveIcon />
                       </Badge>
+                  </IconButton>
+                </NavLink>
+                <NavLink to="/Tugagan-tovarlar">
+                  <IconButton style={{color:'#fff'}}>
+                      <AssignmentTurnedInIcon/>
                   </IconButton>
                 </NavLink>
                 <NavLink to="/personal">
@@ -203,16 +202,17 @@ export default function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          {['Buyurtmalar', 'Foydalanuvchilar', 'Tovarlar', 'Tugagan-tovarlar'].map((text, index) => (
+          {['Buyurtmalar', 'Foydalanuvchilar', 'Tovarlar', 'Tugagan-tovarlar', 'Kategoriya'].map((text, index) => (
             <NavLink to={ `${text}`} key={index} >
-              {/* index===0 ? `/` :  */}
                 <ListItem button >
                     <ListItemIcon>
                       {
                         index === 0 ? <NotificationsActiveIcon /> : 
                         (index === 1 ? <PeopleIcon/>:
                           (index === 2 ? <ShoppingCartIcon/>:
-                            (index === 3 ? <ChatIcon/>:null)))
+                            (index === 3 ? <AssignmentTurnedInIcon/>:
+                              (index === 4 ? <CategoryIcon/>:null)))
+                        )
                       }
                     </ListItemIcon>
                     <ListItemText primary={text} />
@@ -241,6 +241,7 @@ export default function MiniDrawer() {
             <ProtectedRoute path='/Tovarlar'  component={Products} isAuth={isAuth}/>
             <ProtectedRoute path='/Tugagan-tovarlar'  component={Messeges} isAuth={isAuth}/>
             <ProtectedRoute path='/Sotilgan-tovarlar'  component={SoldPro} isAuth={isAuth}/>
+            <ProtectedRoute path='/Kategoriya'  component={Category} isAuth={isAuth}/>
             <ProtectedRoute path='/personal'  component={AdminPage} isAuth={isAuth}/>
         </Switch>
       </main>

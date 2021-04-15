@@ -29,7 +29,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn'
 import UploadImage from './UploadImg';
 import IconButton from "@material-ui/core/IconButton";
-import FixedTags from './Dropdown'
+import FixedTags from './Books/Dropdown'
 import {withRouter} from 'react-router-dom'
 
 const Products = () => {

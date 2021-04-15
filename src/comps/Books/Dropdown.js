@@ -11,11 +11,15 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default function CheckboxesTags() {
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  }
   return (
     <Autocomplete
       multiple
       id="checkboxes-tags-demo"
       options={top100Films}
+      onChange={handleChange}
       disableCloseOnSelect
       getOptionLabel={(option) => option.title}
       renderOption={(option, { selected }) => (
@@ -31,7 +35,13 @@ export default function CheckboxesTags() {
       )}
       style={{ width: '48%', margin:'10px 0' }}
       renderInput={(params) => (
-        <TextField {...params} variant="outlined" label="Buyurtmalar kategoriyasi" placeholder="Kerakli kategoriyalarni tanlang..." />
+        <TextField 
+          {...params} 
+          variant="outlined" 
+          // onChange={(e)=>handleChange(e)}
+          label="Buyurtmalar kategoriyasi" 
+          placeholder="Kerakli kategoriyalarni tanlang..." 
+        />
       )}
     />
   );

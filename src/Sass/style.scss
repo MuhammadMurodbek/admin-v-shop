@@ -177,3 +177,26 @@ a{
         }
     }
 }
+.add-category{
+    &-card{
+        padding: 10px;
+        margin: 0 auto;
+        form{
+            @include d-sa;
+            justify-content: center;
+            flex-direction: column;
+            span{
+                text-align: center;
+                @include d-sa;
+            }
+        }
+        .card-input{
+            width: 400px;
+            padding: 0;
+            margin: 20px auto;    
+        }
+        .btn-category{
+            margin-left: 40px;
+        }
+    }
+}
