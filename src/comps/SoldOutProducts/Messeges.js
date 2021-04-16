@@ -65,6 +65,11 @@ const top100Films = [
 
 function OneDetailPanel() {
 
+    const [checkboxData, setCheckboxData] = useState([])
+    const handleChange = (e, values) => {
+      setCheckboxData([...values])
+    }
+    console.log(checkboxData)
     const tableIcons = {
         Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
         Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -109,6 +114,7 @@ function OneDetailPanel() {
           id="checkboxes-tags-demo"
           options={top100Films}
           disableCloseOnSelect
+          onChange={handleChange}
           getOptionLabel={(option) => option.title}
           renderOption={(option, { selected }) => (
             <React.Fragment>

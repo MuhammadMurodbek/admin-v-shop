@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useContext} from 'react'
+import React,{useEffect, useContext} from 'react'
 import axios from 'axios'
 import { forwardRef } from 'react';
 import MaterialTable from 'material-table'
@@ -18,7 +18,7 @@ import ChevronRight from '@material-ui/icons/ChevronRight';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import {withRouter} from 'react-router-dom'
-import {StoreG} from '../Store/Store'
+import {StoreG} from '../../Store/Store'
 
 const Users = () => {
 

@@ -7,9 +7,9 @@ import {BrowserRouter as
   useLocation
 } from 'react-router-dom'
 import Books from './Books/Books'
-import Products from './Products'
-import Messeges from './Messeges'
-import Users from './Users'
+import Products from './Product/Products'
+import Messeges from './SoldOutProducts/Messeges'
+import Users from './Users/Users'
 import SoldPro from './SoldPro'
 import Exit from './Exit'
 import Category from './Category'
@@ -37,7 +37,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-import AdminPage from './AdminPage';
+import AdminPage from './AdminData/AdminPage'
 
 
 const drawerWidth = 240;

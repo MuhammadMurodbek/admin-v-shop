@@ -21,7 +21,6 @@ import ViewColumn from '@material-ui/icons/ViewColumn'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 
-////--------------------------------
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -47,14 +46,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
 }));
-////--------------------------------
-
 
 export function Editable(){
   const [rowData, setRowData] = useState({})
-  ////////////----------------------------
   const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
 
@@ -70,16 +65,13 @@ export function Editable(){
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-        <h3>{rowData.name}</h3>
-        <h3>{rowData.phone}</h3>
-        <h3>{rowData.data}</h3>
-        <h3>{rowData.more}</h3>
-        <h3>{rowData.delete}</h3>
+        <h3>Ismi: {rowData.name}</h3>
+        <h3>Tel raqami: {rowData.phone}</h3>
+        <h3>Sana: {rowData.data}</h3>
+        <hr/>
+        <h3>Xabar: {rowData.more}</h3>
     </div>
   );
-
-  ///-------------------------------------
-
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -103,12 +95,12 @@ export function Editable(){
     console.log(data)
   }
   const data = [
-    {name:'Murodbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
-    {name:'Murodbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
-    {name:'Azizbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
-    {name:'Murodbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
-    {name:'Murodbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
-    {name:'Murodbek', phone:'Shampun', data:'12/12/12', more:'Tezda junatilsin', delete:'delete'},
+    {name:'Murodbek', phone:'9981234567', data:'12/12/12 | 12:45', more:'Tezda junatilsin'},
+    {name:'Murodbek', phone:'9981234567', data:'12/12/12 | 12:45', more:'Tezda junatilsin'},
+    {name:'Azizbek', phone:'9981234567', data:'12/12/12 | 12:45', more:'Tezda junatilsin'},
+    {name:'Murodbek', phone:'9981234567', data:'12/12/12 | 12:45', more:'Tezda junatilsin'},
+    {name:'Murodbek', phone:'9981234567', data:'12/12/12 | 12:45', more:'Tezda junatilsin'},
+    {name:'Murodbek', phone:'9981234567', data:'12/12/12 | 12:45', more:'Tezda junatilsin'},
   ]
   const column = [
     {title:'Haridor', field:'name'},

@@ -10,7 +10,6 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {withRouter} from 'react-router-dom'
-// import UploadImage from './UploadImg';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -114,8 +113,6 @@ function FullWidthTabs() {
             >
               O'zgarishlarni saqlash
             </Button>
-
-            {/* <UploadImage/> */}
           </div>
         </TabPanel>
       </SwipeableViews>

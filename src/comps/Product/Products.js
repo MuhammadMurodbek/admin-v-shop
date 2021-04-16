@@ -1,38 +1,55 @@
 import React,{useState} from 'react'
 import { forwardRef } from 'react';
+import UploadImage from './UploadImg';
 import Card from '@material-ui/core/Card';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import MaterialTable from 'material-table'
-import AddBox from '@material-ui/icons/AddBox';
-import ArrowDownward from '@material-ui/icons/ArrowDownward';
-import Check from '@material-ui/icons/Check';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import Clear from '@material-ui/icons/Clear';
-import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import MaterialTable from 'material-table';
 import Edit from '@material-ui/icons/Edit';
-import FilterList from '@material-ui/icons/FilterList';
-import FirstPage from '@material-ui/icons/FirstPage';
-import LastPage from '@material-ui/icons/LastPage';
+import Clear from '@material-ui/icons/Clear';
+import Check from '@material-ui/icons/Check';
+import Button from '@material-ui/core/Button';
+import AddBox from '@material-ui/icons/AddBox';
+import Search from '@material-ui/icons/Search';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
-import Search from '@material-ui/icons/Search';
-import ViewColumn from '@material-ui/icons/ViewColumn'
-import UploadImage from './UploadImg';
+import Collapse from '@material-ui/core/Collapse';
+import ListItem from '@material-ui/core/ListItem';
+import LastPage from '@material-ui/icons/LastPage';
+import TextField from '@material-ui/core/TextField';
+import FirstPage from '@material-ui/icons/FirstPage';
+import FilterList from '@material-ui/icons/FilterList';
+import ViewColumn from '@material-ui/icons/ViewColumn';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import IconButton from "@material-ui/core/IconButton";
-import FixedTags from './Books/Dropdown'
+import FixedTags from './Dropdown'
 import {withRouter} from 'react-router-dom'
 
 const Products = () => {
+    const [openAdd, setOpenAdd] = useState(false);
+    const [rowDataInfo, setRowDataInfo] = useState({})
+
+    const handleClickAdd = () => {
+        setOpenAdd(!openAdd);
+    }
+
+    const [open, setOpen] = useState(false);
+    const handleClick = (rowData) => {
+        console.log(rowData)
+        setRowDataInfo(rowData)
+        setOpen(!open);
+    }
+
+    const productInfo={
+        name:'Mahsulotlar'
+    }
 
     const tableIcons = {
         Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -53,7 +70,6 @@ const Products = () => {
         ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
         ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
       };
-    // const { useState } = React;
   
     const [columns, setColumns] = useState(
         [
@@ -71,7 +87,7 @@ const Products = () => {
                     rowData && (
                     <IconButton
                         color="secondary"
-                        onClick={handleClick}
+                        onClick={()=>handleClick(rowData)}
                     >
                         <Edit />
                     </IconButton>
@@ -87,21 +103,6 @@ const Products = () => {
       { product: 'Mehmet', inform: 'Baran', cost: 1987, category: 998993455214, imageUrl:'https://picsum.photos/200/100'},
     
     ]);
-  
-
-    const [openAdd, setOpenAdd] = useState(false);
-    const handleClickAdd = () => {
-        setOpenAdd(!openAdd);
-    }
-
-    const [open, setOpen] = useState(false);
-    const handleClick = () => {
-        setOpen(!open);
-    }
-
-    const productInfo={
-        name:'Mahsulotlar'
-    }
 
     return (
         <div className="admin-product">
@@ -157,10 +158,26 @@ const Products = () => {
                             <div className="admin-product-edit">
                                 <Card className="admin-product-edit-add">
                                     <div>
-                                        <TextField className="textInput" label="Product"/>
-                                        <TextField className="textInput" label="Ma'lumot"/>
-                                        <TextField className="textInput" label="Narx"/>
-                                        <TextField className="textInput" label="Kategoriya"/>
+                                        <TextField 
+                                            className="textInput" 
+                                            placeholder={rowDataInfo.product} 
+                                            label="Product"
+                                        />
+                                        <TextField 
+                                            className="textInput" 
+                                            placeholder={rowDataInfo.inform} 
+                                            label="Ma'lumot"
+                                        />
+                                        <TextField 
+                                            className="textInput" 
+                                            placeholder={rowDataInfo.cost} 
+                                            label="Narx"
+                                        />
+                                        <TextField 
+                                            className="textInput" 
+                                            placeholder={rowDataInfo.category} 
+                                            label="Kategoriya"
+                                        />
                                         <Button
                                             className="btn-admin-add" 
                                             variant="contained" 
@@ -171,7 +188,8 @@ const Products = () => {
                                     </div>
                                     <div>
                                         <span className="admin-add-img">
-                                            <UploadImage/>
+                                            {/* <UploadImage/> */}
+                                            <img src={`${rowDataInfo.imageUrl}`} alt={rowDataInfo.inform}/>
                                         </span>
                                         
                                     </div>
@@ -195,26 +213,7 @@ const Products = () => {
                 options={{exportButton: true}}
                 responsive={true}
                 editable={{
-                // onRowAdd: newData =>
-                //   new Promise((resolve, reject) => {
-                //     setTimeout(() => {
-                //       setData([...data, newData]);
-                        
-                //       resolve();
-                //     }, 1000)
-                //   }),
-                // onRowUpdate: 
-                //     (newData, oldData) =>
-                //     new Promise((resolve, reject) => {
-                //     setTimeout(() => {
-                //         const dataUpdate = [...data];
-                //         const index = oldData.tableData.id;
-                //         dataUpdate[index] = newData;
-                //         setData([...dataUpdate]);
-        
-                //         resolve();
-                //     }, 1000)
-                //     }),
+                
                 onRowDelete: oldData =>
                     new Promise((resolve, reject) => {
                     setTimeout(() => {

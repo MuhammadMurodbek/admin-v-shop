@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '@material-ui/core/Card';
-import {Editable} from '../Table';
+import {Editable} from './Table';
 import Charts from './Charts'
 import FixedTags from './Dropdown'
 import {withRouter} from 'react-router-dom'
