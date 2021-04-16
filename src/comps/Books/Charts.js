@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
-import {Doughnut} from 'react-chartjs-2'
+import {Line} from 'react-chartjs-2'
 
-const Charts = () => {
+const ChartLine = () => {
     const [chartData, setChartData] = useState({})
     const chart = () =>{
         setChartData({
@@ -9,13 +9,9 @@ const Charts = () => {
             datasets:[
                 {
                     label:'level of this',  
-                    data:[32,45,12,76,66],
+                    data:[5,4,8,6,7],
                     backgroundColor:[
-                        'rgba(75,19,192,0.6)',
-                        'rgba(75,19,92,0.6)',
-                        'rgba(75,19,12,0.6)',
-                        'rgba(75,139,2,0.6)',
-                        'rgba(75,139,192,0.6)',
+                        'rgba(75,139,192,0.3)',
                     ],
                     borderWidth: 5
                 },
@@ -34,7 +30,7 @@ const Charts = () => {
                 margin:'0 auto'
             }}
         >
-            <Doughnut 
+            <Line 
                 data={chartData}
                 options={{
                     responsive: true,
@@ -48,4 +44,4 @@ const Charts = () => {
     )
 }
 
-export default Charts
+export default ChartLine

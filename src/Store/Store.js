@@ -1,5 +1,6 @@
 import React,{createContext} from 'react'
 import userDB from '../Json-Data/Users.json'
+import axios from 'axios'
 export const StoreG = createContext()
 
 const Store = (props) => {
@@ -10,13 +11,17 @@ const Store = (props) => {
         ad:'1rw',
         asdf:'1rw',
     }
-    
+    const sendImage = (data) => {
+        // axios.post('/',)
+        console.log(data)
+    }
     return (
         <StoreG.Provider
             value={
                 {
                     obj,
-                    userData
+                    userData,
+                    sendImage
                 }
             }
         >
