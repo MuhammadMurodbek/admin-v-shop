@@ -8,7 +8,6 @@ import AddBox from '@material-ui/icons/AddBox';
 import Remove from '@material-ui/icons/Remove';
 import Search from '@material-ui/icons/Search';
 import SaveAlt from '@material-ui/icons/SaveAlt';
-import Checkbox from '@material-ui/core/Checkbox';
 import LastPage from '@material-ui/icons/LastPage';
 import TextField from '@material-ui/core/TextField';
 import FirstPage from '@material-ui/icons/FirstPage';
@@ -66,9 +65,6 @@ const top100Films = [
 function OneDetailPanel() {
 
     const [checkboxData, setCheckboxData] = useState([])
-    const handleChange = (e, values) => {
-      setCheckboxData([...values])
-    }
     console.log(checkboxData)
     const tableIcons = {
         Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -110,27 +106,11 @@ function OneDetailPanel() {
     return (
       <>
         <Autocomplete
-          multiple
-          id="checkboxes-tags-demo"
+          id="combo-box-demo"
           options={top100Films}
-          disableCloseOnSelect
-          onChange={handleChange}
           getOptionLabel={(option) => option.title}
-          renderOption={(option, { selected }) => (
-            <React.Fragment>
-              <Checkbox
-                icon={icon}
-                checkedIcon={checkedIcon}
-                style={{ marginRight: 8 }}
-                checked={selected}
-              />
-              {option.title}
-            </React.Fragment>
-          )}
           style={{ width: '48%', margin:'10px auto' }}
-          renderInput={(params) => (
-            <TextField {...params} variant="outlined" label="Kategoriya bo'yicha tartiblash" placeholder="Kerakli kategoriyalarni tanlang..." />
-          )}
+          renderInput={(params) => <TextField {...params} label="Kategoriya bo'yicha tartiblash" variant="outlined" />}
         />
 
         <MaterialTable

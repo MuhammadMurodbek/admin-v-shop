@@ -1,6 +1,6 @@
 import React,{createContext} from 'react'
 import userDB from '../Json-Data/Users.json'
-import axios from 'axios'
+// import axios from 'axios' 
 export const StoreG = createContext()
 
 const Store = (props) => {

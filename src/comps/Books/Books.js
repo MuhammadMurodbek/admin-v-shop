@@ -1,9 +1,9 @@
 import React from 'react'
 import Card from '@material-ui/core/Card';
-import {Editable} from './Table';
+import { Editable } from './Table';
 import Charts from './Charts'
 import FixedTags from './Dropdown'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 const Books = () => {
     return (
@@ -58,18 +58,18 @@ const Books = () => {
             <div className="chart-part">
                 <div className="chart-part-wrapper">
                     <Card className="card-chart">
-                        <Charts/>
+                        <Charts />
                     </Card>
                 </div>
             </div>
-            <div style={{display:"flex", alignItems: "center", justifyContent: "space-around"}}>
-                <Card className="card" style={{width:"48%", padding:"20px", textAlign: "center"}}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
+                <Card className="card" style={{ width: "48%", padding: "20px", textAlign: "center" }}>
                     <h2>Buyurtmalarni kategoriya bo'yicha tartiblash</h2>
                 </Card>
-                <FixedTags/>
+                <FixedTags />
             </div>
             <div>
-                <Editable/>
+                <Editable />
             </div>
         </>
     )
