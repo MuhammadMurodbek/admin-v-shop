@@ -1,32 +1,48 @@
-import React from 'react';
-import ImageUploader from 'react-images-upload';
- 
-export default class UploadImage extends React.Component {
- 
-    constructor(props) {
-        super(props);
-        this.state = { pictures: [] };
-        this.onDrop = this.onDrop.bind(this);
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
+    input: {
+        display: 'none',
+    },
+   
+}));
+
+export default function UploadButtons() {
+    const [imageUrl, setImageUrl] = useState('')
+    const classes = useStyles();
+    const upLoad = (e) => {
+        setImageUrl(e.target.value)
+        console.log(e.target.files[0]);
     }
- 
-    onDrop(picture) {
-        this.setState({
-            pictures: this.state.pictures.concat(picture),
-        });
-    }
-    
-    render() {
-        console.log(this.state.pictures)
-        return (
-            <ImageUploader
-                withPreview={true}
-                singleImage={true}
-                withIcon={true}
-                buttonText='Choose images'
-                onChange={this.onDrop}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                maxFileSize={5242880}
+    return (
+        <div className="imageUpload">
+            <p>{imageUrl}</p>
+            {/* URL.createObjectURL */}
+            <input
+                accept="image/*"
+                className={classes.input}
+                id="contained-button-file"
+                multiple
+                type="file"
+                onChange={upLoad}
             />
-        );
-    }
+            <label htmlFor="contained-button-file">
+                <Button
+                    className="imageUpload-btn"
+                    variant="contained" 
+                    color="primary" 
+                    component="span"
+                >
+                    Upload
+                </Button>
+            </label>
+
+        </div>
+    );
 }

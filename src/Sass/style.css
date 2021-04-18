@@ -277,4 +277,15 @@ a {
 }
 .add-category-card .btn-category {
   margin-left: 40px;
+}
+
+.imageUpload {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  text-align: center;
+}
+.imageUpload-btn {
+  position: absolute;
+  bottom: -10%;
 }/*# sourceMappingURL=style.css.map */

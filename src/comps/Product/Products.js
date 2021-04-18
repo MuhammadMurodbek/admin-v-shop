@@ -43,7 +43,7 @@ const Products = () => {
 
     const [open, setOpen] = useState(false);
     const handleClick = (rowData) => {
-        console.log(rowData)
+        // console.log(rowData)
         setRowDataInfo(rowData)
         setOpen(!open);
     }
@@ -116,10 +116,32 @@ const Products = () => {
         options: top100Films,
         getOptionLabel: (option) => option.title,
     };
+    
+    ////POST DATA -> PRODUCT ADD 
 
-   
-    const [value, setValue] = React.useState(null);
+    const [addedProduct, setAddedProduct] = useState({name:"", info:"",cost:0})
+    
+    const handleGetValues = (e) =>{
+        setAddedProduct({
+            ...addedProduct,
+            [e.target.name] : e.target.value
+        })
 
+    }
+    console.log(addedProduct)    
+    const handleAddSubmit = (e) =>{
+        e.preventDefault();
+
+    }
+
+    const getValueAutoComplete = (data) => {
+         console.log(data.target.innerText)
+    }
+
+    const getValueImage = (value) => {
+        console.log(value);
+    }
+    
     return (
         <div className="admin-product">
             <div>
@@ -135,11 +157,29 @@ const Products = () => {
                         <ListItem >
                             <div className="admin-product-edit">
                                 <Card className="admin-product-edit-add">
-                                    <div>
-                                        <TextField className="textInput" label="Product" />
-                                        <TextField className="textInput" label="Ma'lumot" />
-                                        <TextField className="textInput" label="Narx" />
+                                    <form>
+                                        <TextField
+                                            name="name" 
+                                            label="Product"
+                                            className="textInput" 
+                                            onChange={handleGetValues}
+                                        />
+                                        <TextField
+                                            name="info" 
+                                            label="Ma'lumot" 
+                                            className="textInput" 
+                                            onChange={handleGetValues}
+                                        />
+                                        <TextField
+                                            name="cost" 
+                                            label="Narx" 
+                                            type="number"
+                                            className="textInput" 
+                                            onChange={handleGetValues}
+                                        />
                                         <Autocomplete
+                                            name="category"
+                                            onChange={(e)=>getValueAutoComplete(e)}
                                             {...defaultProps}
                                             id="clear-on-escape"
                                             clearOnEscape
@@ -147,16 +187,18 @@ const Products = () => {
                                             renderInput={(params) => <TextField {...params} label="Kategoriya" margin="normal" />}
                                         />
                                         <Button
-                                            className="btn-admin-add"
-                                            variant="contained"
+                                            type="submit"
                                             color="primary"
+                                            variant="contained"
+                                            onClick={handleAddSubmit}
+                                            className="btn-admin-add"
                                         >
                                             Add
                                         </Button>
-                                    </div>
+                                    </form>
                                     <div>
                                         <span className="admin-add-img">
-                                            <UploadImage />
+                                            <UploadImage getValueImage={getValueImage}/>
                                         </span>
                                     </div>
                                 </Card>

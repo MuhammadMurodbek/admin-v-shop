@@ -129,9 +129,7 @@ export default function MiniDrawer() {
   const history = useHistory()
 
   let location = useLocation()
-  useEffect(() => {
-    console.log(location)
-  }, [])
+  
 
   const handleDrawerOpen = () => {
     setOpen(true);

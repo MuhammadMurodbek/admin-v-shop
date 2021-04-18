@@ -24,12 +24,12 @@ const Exit = () => {
     })
 
     const onSubmit = (data) => {
-        console.log(data)
+        // console.log(data)
         history.push('/Buyurtmalar')
         history.go()
     }
 
-    console.log(errors)
+    // console.log(errors)
 
     return (
         <div className="container-login">

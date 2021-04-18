@@ -203,3 +203,15 @@ a{
         }
     }
 }
+.imageUpload{
+    position:relative;
+    width: 400px;
+    height: 200px;
+    text-align: center;
+    
+    &-btn{
+        position:absolute;
+        bottom:-10%;
+        // top:100%;
+    }
+}
