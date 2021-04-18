@@ -87,13 +87,14 @@ const Products = () => {
             { title: 'Kategoriya', field: 'category', width: '30%' },
             { title: 'Rasm', field: 'imageUrl', render: rowData => <img src={rowData.imageUrl} alt="asd" /> },
             {
-                title: "Custom Add",
+                title: "O'zgartirish",
                 field: "internal_action",
                 width: '10%',
                 editable: false,
                 render: (rowData) =>
                     rowData && (
                         <IconButton
+                            href="#change"
                             color="secondary"
                             onClick={() => handleClick(rowData)}
                         >
@@ -116,10 +117,7 @@ const Products = () => {
         getOptionLabel: (option) => option.title,
     };
 
-    const flatProps = {
-        options: top100Films.map((option) => option.title),
-    };
-
+   
     const [value, setValue] = React.useState(null);
 
     return (
@@ -160,7 +158,6 @@ const Products = () => {
                                         <span className="admin-add-img">
                                             <UploadImage />
                                         </span>
-
                                     </div>
                                 </Card>
                             </div>
@@ -168,7 +165,7 @@ const Products = () => {
                     </List>
                 </Collapse>
             </div>
-            <div>
+            <div id="change">
                 <ListItem button onClick={handleClick}>
                     <ListItemIcon>
                         <InboxIcon />
@@ -197,10 +194,12 @@ const Products = () => {
                                             placeholder={rowDataInfo.cost}
                                             label="Narx"
                                         />
-                                        <TextField
+                                         <Autocomplete
+                                            {...defaultProps}
+                                            id="clear-on-escape"
+                                            clearOnEscape
                                             className="textInput"
-                                            placeholder={rowDataInfo.category}
-                                            label="Kategoriya"
+                                            renderInput={(params) => <TextField {...params} label="Kategoriya" margin="normal" />}
                                         />
                                         <Button
                                             className="btn-admin-add"
