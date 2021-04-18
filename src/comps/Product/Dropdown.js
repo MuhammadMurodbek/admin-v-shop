@@ -10,7 +10,7 @@ export default function ComboBox() {
       options={top100Films}
       getOptionLabel={(option) => option.title}
       style={{ width: '48%', margin:'10px 0' }}
-      renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+      renderInput={(params) => <TextField {...params} label="Kategoriya" variant="outlined" />}
     />
   );
 }

@@ -13,7 +13,7 @@ const ChartLine = () => {
                     backgroundColor:[
                         'rgba(75,139,192,0.3)',
                     ],
-                    borderWidth: 5
+                    borderWidth: 2
                 },
             ]
         })
@@ -24,7 +24,7 @@ const ChartLine = () => {
     return (
         <div className="chart-diagram"
             style={{
-                width:'500px',
+                width:'700px',
                 minWidth:'300px', 
                 height:'auto', 
                 margin:'0 auto'
