@@ -304,10 +304,10 @@ export default function MiniDrawer() {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Exit/>
             </Route>
-            <Route exact path='/Buyurtmalar'>
+            <Route path='/Buyurtmalar'>
               <Books/>
             </Route>
             <Route path='/Foydalanuvchilar'>

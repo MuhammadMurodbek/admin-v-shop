@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -26,6 +26,11 @@ const Exit = () => {
     const { register, handleSubmit, errors } = useForm({
         resolver: yupResolver(schema),
     })
+
+    useEffect(() =>{
+        history.push('/Buyurtmalar')
+        history.go()
+    },[])
 
     const onSubmit = (data) => {
         // console.log(data)
