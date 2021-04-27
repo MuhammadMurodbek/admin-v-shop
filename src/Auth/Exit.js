@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from 'react'
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import Button from '@material-ui/core/Button';
-import { useHistory } from "react-router-dom";
-import Card from '@material-ui/core/Card';
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import Card from '@material-ui/core/Card';
+import Loader from "react-loader-spinner";
+import { useHistory } from "react-router-dom";
+import Button from '@material-ui/core/Button';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { StoreG } from '../Store/Store'
 
 const schema = yup.object().shape({
@@ -14,6 +15,8 @@ const schema = yup.object().shape({
 });
 
 const Exit = () => {
+
+    const [loader, setLoader] = useState(false)
 
     let history = useHistory()
 
@@ -26,17 +29,29 @@ const Exit = () => {
 
     const onSubmit = (data) => {
         // console.log(data)
-        axios.post('https://jsonplaceholder.typicode.com/posts',{data})
+        setLoader(true)
+        axios.post('https://jsonplaceholder.typicode.com/posts', { data })
             .then((res) => {
                 console.log(res)
+                history.push('/Buyurtmalar')
+                history.go()
+                setLoader(false)
             })
             .catch((error) => {
                 console.error(error)
-        })
+                setLoader(false)
+            })
     }
     return (
         <div className="container-login">
             <Card className="container-login-card">
+                {loader ? (<Loader
+                    type="ThreeDots"
+                    color="#00BFFF"
+                    height={30}
+                    width={30}
+                    timeout={3000} //3 secs
+                />) : null}
                 <div className="login">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <h2>Admin</h2>
