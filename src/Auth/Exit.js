@@ -27,10 +27,10 @@ const Exit = () => {
         resolver: yupResolver(schema),
     })
 
-    useEffect(() =>{
-        history.push('/Buyurtmalar')
-        history.go()
-    },[])
+    // useEffect(() =>{
+    //     history.push('/Buyurtmalar')
+    //     history.go()
+    // },[])
 
     const onSubmit = (data) => {
         // console.log(data)
