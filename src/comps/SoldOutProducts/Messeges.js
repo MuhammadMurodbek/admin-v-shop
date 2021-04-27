@@ -100,7 +100,7 @@ function OneDetailPanel() {
       { product: 'Mehmet', inform: 'Baran', cost: 1987, category: 998993455214, imageUrl:'https://picsum.photos/200/100'},
       { product: 'Mehmet', inform: 'Baran', cost: 1987, category: 998993455214, imageUrl:'https://picsum.photos/200/120'},
       { product: 'Mehmet', inform: 'Baran', cost: 1987, category: 998993455214, imageUrl:'https://picsum.photos/200/100'},
-      { product: 'Mehmet', inform: 'Baran', cost: 1987, category: 998993455214, imageUrl:'https://picsum.photos/200/100'},
+      { product: 'Meh', inform: 'Baran', cost: 1987, category: 998993455214, imageUrl:'https://picsum.photos/200/100'},
     ]);
   
     return (

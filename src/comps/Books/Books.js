@@ -64,7 +64,7 @@ const Books = () => {
             </div>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
                 <Card className="card" style={{ width: "48%", padding: "20px", textAlign: "center" }}>
-                    <h2>Buyurtmalarni kategoriya bo'yicha tartiblash</h2>
+                    <h2>Kategoriya bo'yicha tartiblash</h2>
                 </Card>
                 <FixedTags />
             </div>

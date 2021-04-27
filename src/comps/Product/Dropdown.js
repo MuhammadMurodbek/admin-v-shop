@@ -4,10 +4,14 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 export default function ComboBox() {
+  const getValue = (e, values) =>{
+    console.log(values)
+  }
   return (
     <Autocomplete
       id="combo-box-demo"
       options={top100Films}
+      onChange={getValue}
       getOptionLabel={(option) => option.title}
       style={{ width: '48%', margin:'10px 0' }}
       renderInput={(params) => <TextField {...params} label="Kategoriya" variant="outlined" />}

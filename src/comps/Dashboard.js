@@ -14,11 +14,9 @@ import Messeges from './SoldOutProducts/Messeges'
 import Users from './Users/Users'
 import SoldPro from './SoldPro'
 import Exit from '../Auth/Exit'
-import Alert from '@material-ui/lab/Alert';
 import Category from './Category'
 import List from '@material-ui/core/List';
 import Badge from '@material-ui/core/Badge';
-import ProtectedRoute from './ProtectedRoute';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -46,6 +44,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import AdminPage from './AdminData/AdminPage'
+import NotFound from './NotFound';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -125,7 +124,16 @@ export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [isAuth, setIsAuth] = useState(true)
+  const [urlLink] = useState(
+    [ 
+      '/Buyurtmalar',
+      '/Foydalanuvchilar',
+      '/Tovarlar',
+      '/Tugagan-tovarlar',
+      '/Kategoriya', 
+      '/personal', 
+    ]
+  )
   const history = useHistory()
 
   let location = useLocation()
@@ -153,6 +161,7 @@ export default function MiniDrawer() {
     history.push('/')
     history.go()
   }
+ 
   return (
     <>
       <Dialog
@@ -179,7 +188,7 @@ export default function MiniDrawer() {
         <AppBar
           position="fixed"
           className={
-            location.pathname === '/' ?
+            (location.pathname === '/' || (! urlLink.includes(location.pathname)) ) ?
               classes.appBarAuth :
               clsx(classes.appBar, {
                 [classes.appBarShift]: open,
@@ -226,7 +235,7 @@ export default function MiniDrawer() {
         <Drawer
           variant="permanent"
           className={
-            location.pathname === '/' ?
+            (location.pathname === '/' || (! urlLink.includes(location.pathname))) ?
               classes.drawerAuth :
               clsx(classes.drawer, {
                 [classes.drawerOpen]: open,
@@ -295,14 +304,33 @@ export default function MiniDrawer() {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Switch>
-            <Route exact path='/'><Exit /></Route>
-            <ProtectedRoute path='/Buyurtmalar' component={Books} isAuth={isAuth} />
-            <ProtectedRoute path='/Foydalanuvchilar' component={Users} isAuth={isAuth} />
-            <ProtectedRoute path='/Tovarlar' component={Products} isAuth={isAuth} />
-            <ProtectedRoute path='/Tugagan-tovarlar' component={Messeges} isAuth={isAuth} />
-            <ProtectedRoute path='/Sotilgan-tovarlar' component={SoldPro} isAuth={isAuth} />
-            <ProtectedRoute path='/Kategoriya' component={Category} isAuth={isAuth} />
-            <ProtectedRoute path='/personal' component={AdminPage} isAuth={isAuth} />
+            <Route exact path="/">
+              <Exit/>
+            </Route>
+            <Route path='/Buyurtmalar'>
+              <Books/>
+            </Route>
+            <Route path='/Foydalanuvchilar'>
+              <Users/>
+            </Route>
+            <Route path='/Tovarlar'>
+              <Products/>
+            </Route>
+            <Route path='/Tugagan-tovarlar'>
+              <Messeges/>
+            </Route>
+            <Route path='/Sotilgan-tovarlar'>
+              <SoldPro/>
+            </Route>
+            <Route path='/Kategoriya'>
+              <Category/>
+            </Route>
+            <Route path='/personal'>
+              <AdminPage/>
+            </Route>
+            <Route path='*'>
+              <NotFound/>
+            </Route>
           </Switch>
         </main>
       </div>

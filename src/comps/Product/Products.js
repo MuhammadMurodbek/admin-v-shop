@@ -81,11 +81,6 @@ const Products = () => {
 
     const [columns, setColumns] = useState(
         [
-            { title: 'Mahsulot', field: 'product', width: '30%' },
-            { title: 'Malumot', field: 'inform', width: '20%' },
-            { title: 'Narx', field: 'cost', type: 'numeric', width: '10%' },
-            { title: 'Kategoriya', field: 'category', width: '30%' },
-            { title: 'Rasm', field: 'imageUrl', render: rowData => <img src={rowData.imageUrl} alt="asd" /> },
             {
                 title: "O'zgartirish",
                 field: "internal_action",
@@ -103,6 +98,11 @@ const Products = () => {
                     )
 
             },
+            { title: 'Mahsulot', field: 'product', width: '30%' },
+            { title: 'Malumot', field: 'inform', width: '20%' },
+            { title: 'Narx', field: 'cost', type: 'numeric', width: '10%' },
+            { title: 'Kategoriya', field: 'category', width: '30%' },
+            { title: 'Rasm', field: 'imageUrl', render: rowData => <img src={rowData.imageUrl} alt="asd" /> },
         ]
     );
     const [data, setData] = useState([

@@ -47,13 +47,13 @@ const column = [
     { title: 'Sana', field: 'data'},
     { title: 'Narx', field: 'cost'},
     { title: 'Kategoriya', field: 'category'},
-    { title: 'Rasm', field: 'imageUrl', render: rowData => <img src={rowData.imageUrl} alt="asd"/> },
 ]
 const SoldPro = () => {
     return (
         <div>
             <MaterialTable
                 title="Sotilgan mahsulotlar"
+                options={{exportButton: true}}
                 icons={tableIcons}
                 data={data}
                 columns={column}
